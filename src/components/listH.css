@@ -1,0 +1,16 @@
+ul {
+    display: flex;
+    width: 100%;
+    justify-content: left;
+    align-items: stretch;
+    list-style: none;
+    .item {
+        font-weight: bold;
+        text-transform: uppercase;
+        height: 100%;
+    }
+    .item:hover {
+        filter: drop-shadow(0 0 1em #ffffff);
+        cursor: pointer;
+    }
+}
