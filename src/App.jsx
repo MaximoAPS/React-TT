@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router'
 import './App.css'
-import { Header } from './components/header'
+import { Header } from './components/Header'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import { Main } from './components/Main'
