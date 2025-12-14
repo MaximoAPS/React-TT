@@ -1,13 +1,14 @@
 import './main.css';
 import React from 'react';
 import { CarritoButton } from './CarritoButton';
+import { useAuthContext } from '../context/AuthContext';
 
 export const Main = () => {
-    const nameLS = localStorage.getItem('name');
+    const { usuario } = useAuthContext();
     return (
         <main>
             <h1>Main Page</h1>
-            {nameLS? <p>Welcome {nameLS}</p> : <p>Please login or register</p>}
+            {usuario ? <p>Welcome {usuario}</p> : <p>Please login or register</p>}
             <CarritoButton />
         </main>
     )

@@ -1,9 +1,8 @@
-import { Header } from './Header';
+
 import './login.css';
 import React, { useState } from 'react';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';  
 import { useNavigate } from 'react-router';
+import { useAuthContext } from '../context/AuthContext';
 
 export const Login = () => {
     const [username, setUsername] = useState('');
@@ -11,7 +10,7 @@ export const Login = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
-
+    const { login } = useAuthContext();
     const handleOnChangeUsername = (e) => {
         setUsername(e.target.value);
         if (e.target.value.length < 3) {
@@ -31,15 +30,13 @@ export const Login = () => {
     }
 
     const handleSubmit = (e) => {
-        const nameLS = localStorage.getItem('name');
-        const passwordLS = localStorage.getItem('password');
-        console.log(nameLS, passwordLS);
         e.preventDefault();
 
-        if (nameLS === username && passwordLS === password) {
+        if (username && password) {
             setSuccess('Login successful');
             setError('');
             setTimeout(() => {
+                login(username);
                 navigate('/');
             }, 1000);
         } else {
@@ -50,8 +47,6 @@ export const Login = () => {
 
     return (
         <>
-        <Header />
-        <Navbar />
         <div className="login">
             <h1>Fake Login</h1>
             <form onSubmit={handleSubmit}>
@@ -62,7 +57,6 @@ export const Login = () => {
             {error && <p className="error">{error}</p>}
             {success && <p className="success">{success}</p>}
         </div>
-        <Footer />
         </>
     )
 }

@@ -10,3 +10,22 @@ nav {
     top: 0;
     background-color:  #242424;
 }
+
+.logout {
+    background-color: #f40202 !important;
+    color: #ffffff !important;
+    border-radius: 0 !important;
+    text-decoration: none;
+    padding-inline: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+        background-color: #ffffff !important;
+        color: #f40202 !important;
+    }
+}

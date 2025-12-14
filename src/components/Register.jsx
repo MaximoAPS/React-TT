@@ -1,15 +1,15 @@
 import './register.css';
 import React, { useState } from 'react';
-import { Header } from './Header';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';
+import { useNavigate } from 'react-router';
+import { useAuthContext } from '../context/AuthContext';
 
 export const Register = () => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-
+    const navigate = useNavigate();
+    const { login } = useAuthContext();
     const handleOnChangeName = (e) => {
         setName(e.target.value);
         if (e.target.value.length < 3) {
@@ -36,16 +36,16 @@ export const Register = () => {
         if (name.length < 3) {
             setError('Name must be at least 3 characters long');
         } else {
-            localStorage.setItem('name', name);
-            localStorage.setItem('password', password);
+            login(name);
             setSuccess('User registered successfully');
             setError('');
+            setTimeout(() => {
+                navigate('/login');
+            }, 1000);
         }
     }
     return (
         <>
-        <Header />
-        <Navbar />
         <div className="register">
             <h1>Fake Register</h1>
             <form onSubmit={handleSubmit}>
@@ -57,7 +57,6 @@ export const Register = () => {
             {success && <p className="success">{success}</p>}
             {name && <p className="name">Bienvenido {name} a nuestra aplicación!</p>}
         </div>
-        <Footer />
         </>
     )
 }
